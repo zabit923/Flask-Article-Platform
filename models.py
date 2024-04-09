@@ -2,14 +2,14 @@ from passlib.hash import bcrypt
 
 from app import db
 from flask_jwt_extended import create_access_token
-from datetime import timedelta
+from datetime import timedelta, datetime
 
 
 class Review(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100))
     desc = db.Column(db.Text)
-    created_at = db.Column(DateTime, default=datetime.utcnow)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
     def __str__(self):
